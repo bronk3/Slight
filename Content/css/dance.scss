@@ -1,0 +1,238 @@
+$lead-active: #A3B8FF; 
+$lead-inactive: rgba(163, 184, 255, 0.5);
+$follow-active: #FF89DD;
+$follow-inactive:rgba(255, 137, 221, 0.5);
+$inactive-step: FFB977;
+$active-step: rgba(255, 185, 119, 0.5);
+
+
+/*Animation: name durration timing-function delay iteration direction*/
+@mixin animation($animate...) {
+    $max: length($animate);
+    $animations: '';
+
+    @for $i from 1 through $max {
+        $animations: #{$animations + nth($animate, $i)};
+
+        @if $i < $max {
+            $animations: #{$animations + ", "};
+        }
+    }
+    -webkit-animation: $animations;
+    -moz-animation:    $animations;
+    -o-animation:      $animations;
+    animation:         $animations;
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+
+
+@-webkit-keyframes active-step {
+  from {
+    background-color: $lead-active;
+  }
+  to {
+    background-color: $lead-inactive;
+  }
+}
+
+@keyframes active-step {
+  1%, 14% {
+    background-color: $lead-active;
+  }
+
+  0%, 15%, 100% {
+    background-color: $lead-inactive;
+  }
+}
+
+.active-step 
+{
+
+}
+
+.outter-container
+{
+	width: 100px;
+	height: 200px;
+	display: block;
+} 
+
+
+
+@include keyframes(step-1)
+{
+  1%, 28% {
+    background-color: $lead-active;
+  }
+
+  0%, 29%, 100% {
+    background-color: $lead-inactive;
+  }
+} 
+@include keyframes(step-1)
+{
+  14%, 42% {
+    background-color: $lead-active;
+  }
+
+  0%, 13%, 43%, 100% {
+    background-color: $lead-inactive;
+  }
+}
+@include keyframes(step-2)
+{
+  28%, 56% {
+    background-color: $lead-active;
+  }
+
+  0%, 27%, 57%, 100% {
+    background-color: $lead-inactive;
+  }
+}
+@include keyframes(step-3)
+{
+  42%, 70% {
+    background-color: $lead-active;
+  }
+
+  0%, 41%, 71%, 100% {
+    background-color: $lead-inactive;
+}
+}
+@include keyframes(step-4)
+{
+  56%, 84% {
+    background-color: $lead-active;
+  }
+
+  0%, 55%, 85%, 100% {
+    background-color: $lead-inactive;
+}
+}
+@include keyframes(step-5)
+{
+ 70%, 99% {
+    background-color: $lead-active;
+  }
+
+  0%, 69%, 100% {
+    background-color: $lead-inactive;
+}
+}
+@include keyframes(step-6)
+{
+ 0%, 84%, 99% {
+    background-color: $lead-active;
+  }
+
+  1%, 83%, 100% {
+    background-color: $lead-inactive;
+}
+}
+
+ 
+.contain-float
+{
+	overflow: hidden;
+	clear: both;
+} 
+.flip
+{
+       -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+} 
+
+.leftshoe
+{
+	background: url('../images/leftshoe.png') center center no-repeat;
+	height: 200px;
+	width: 100px;
+	float: right;
+} 
+.rightshoe
+{
+	@extend .flip;
+	@extend .leftshoe;
+	float: left;
+}
+
+.lead
+{
+	.foot
+	{
+		background-color: $lead-inactive !important;
+	} 
+	.active
+	{
+		background-color: $lead-active !important;
+	}
+} 
+
+.follow
+{
+	.inactive
+	{
+		background-color: $follow-inactive !important;
+	} 
+	.active
+	{
+		background-color: $follow-active !important;
+	} 
+} 
+
+
+#balboa 
+{
+	/*.foot-container:nth-child(odd) .foot
+	{
+		@extend .leftshoe;
+	}
+	.foot-container:nth-child(even) .foot
+	{
+		@extend .rightshoe;
+	}
+	.foot-container:nth-child(1) .foot
+	{
+		@include animation('step-3 7s linear 0s infinite forwards');
+	} 
+		.foot-container:nth-child(2) .foot
+	{
+		@include animation('step-2 7s linear 0s infinite forwards');
+	} 
+		.foot-container:nth-child(3) .foot
+	{
+		@include animation('step-1 7s linear 0s infinite forwards');
+	} 
+		.foot-container:nth-child(4) .foot
+	{
+		@include animation('step-1 7s linear 0s infinite forwards');
+		@include animation('step-4 7s linear 0s infinite forwards');
+	} 
+		.foot-container:nth-child(5) .foot
+	{
+		@include animation('step-5 7s linear 0s infinite forwards');
+	} 
+		.foot-container:nth-child(6) .foot
+	{
+		@include animation('step-6 7s linear 0s infinite forwards');
+	} */
+}

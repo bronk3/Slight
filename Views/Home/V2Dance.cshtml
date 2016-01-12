@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "V2Dance";
+}
+
+<div id="lesson-in">
+
+
+</div>
+
+
+<script>
+
+</script>
+
+<script>
+    $(function () {
+
+        var context = { Name: "Balboa",
+            Durration: 8,
+            Role: "lead",
+            StepGridWidth: 6,
+            Steps: [
+            [{
+                Order: [3],
+                Durration: 1,
+                FootType: 'left'
+            },{
+                Order: [2, 8],
+                Durration: 1,
+                FootType: 'right'
+            }],
+            [{
+                Order: [1, 7],
+                Durration: 2,
+                FootType: 'left'
+            },
+            {
+                Order: [1, 4],
+                Durration: 2,
+                FootType: 'right'
+            }],
+            [{
+                Order: [5],
+                Durration: 1,
+                FootType: 'left'
+            },
+            {
+                Order: [6],
+                Durration: 2,
+                FootType: 'right'
+            }]
+        ]
+        };
+
+        var source = $("#footwork-template").html();
+        var template = Handlebars.compile(source);
+        var html = template(context);
+        $('#lesson-in').append(html);
+    });
+</script>
+
+<script>
+    Handlebars.registerHelper("math", function (a, op, b, options) {
+        a = parseFloat(a);
+        b = parseFloat(b);
+        var val;
+        switch (op) {
+            case "+": val = a + b;
+                break;
+            case "-": val = a - b;
+                break;
+            case "*": val = a * b;
+                break;
+            case "/": val = a / b;
+                break;
+            case "%": val = a % b;
+                break;
+            case "^": val = Math.pow(a, b);
+                break;
+            case "&": val = a + a + b;
+                break;
+        };
+        return val;
+    });
+</script>
+
+<script id="footwork-template" type="text/x-handlebars-template">
+<div class="container">
+    <h2>{{Name}}</h2>
+    <h3>Durration: {{Durration}} Counts</h3>
+    <div class="dance-type row {{Role}}" id="{{Name}}">
+
+   {{#each Steps}}
+    {{#each this}}
+        <div class="col-xs-{{../../StepGridWidth}} foot-container">
+            <div class="foot position-{{math @@../index "&" @@index}} {{FootType}}shoe {{#each Order}} foot-{{this}} {{/each}} durration-{{Durration}}">
+            </div>
+        </div>
+        {{/each}}
+    {{/each}}
+
+    </div>
+</div>
+</script>
