@@ -9,57 +9,109 @@
 
 
 <script>
-
-</script>
-
-<script>
     $(function () {
+        $(window).ready(setInterval(DanceSteps, 1000));
 
         var context = { Name: "Balboa",
             Durration: 8,
             Role: "lead",
             StepGridWidth: 6,
             Steps: [
-            [{
+            {
+                Position: 0,
                 Order: [3],
                 Durration: 1,
                 FootType: 'left'
-            },{
+            }, {
+                Position: 1,
                 Order: [2, 8],
                 Durration: 1,
                 FootType: 'right'
-            }],
-            [{
-                Order: [1, 7],
+            },
+            {
+                Position: 2,
+                Order: [7],
+                StartWeight: true,
                 Durration: 2,
                 FootType: 'left'
             },
             {
+                Position: 3,
                 Order: [1, 4],
                 Durration: 2,
                 FootType: 'right'
-            }],
-            [{
+            },
+            {
+                Position: 4,
                 Order: [5],
                 Durration: 1,
                 FootType: 'left'
             },
             {
+                Position: 5,
                 Order: [6],
                 Durration: 2,
                 FootType: 'right'
-            }]
+            }
         ]
         };
+
+        var Globals =
+        {
+            dance: context,
+            danceStepIndex: 1,
+            firstStepEl: null,
+            firstStepWeightEl: null,
+            currentStepEl: null,
+            previousStepEl: null,
+            currentDurration: 0
+        }
+
+        function DanceSteps() {
+
+            if (Globals.previousStepEl != null) {
+                $(Globals.previousStepEl).removeClass("active");
+            }
+
+            var danceStepIndex = Globals.danceStepIndex;
+            var currentStepObj = Globals.dance.Steps.filter(function (obj) {
+                if (obj.Order.indexOf(danceStepIndex) != -1)
+                    return obj;
+            });
+            var newStepEl = $(".data-step-" + danceStepIndex + ":first");
+
+            if (danceStepIndex == 1) {
+                Globals.firstStepEl = newStepEl;
+                var obj = Globals.dance.Steps.filter(function (obj, index) {
+                    if (obj.StartWeight) return obj;
+                });
+                Globals.firstStepWeightEl = $("*[data-position='" + obj[0].Position + "']:first");
+                $(Globals.firstStepWeightEl).addClass("active");
+                Globals.previousStepEl = Globals.firstStepWeightEl;
+            }
+
+            if (newStepEl.length == 0) {
+                danceStepIndex = 1;
+                Globals.currentStepEl = Globals.firstStepEl;
+                Globals.previousStepEl = Globals.firstStepWeightEl;
+            }
+            Globals.previousStepEl = Globals.currentStepEl;
+            Globals.currentStepEl = newStepEl;
+            $(Globals.previousStepEl).addClass("active");
+            $(Globals.currentStepEl).addClass("active");
+            Globals.danceStepIndex++;
+        }
+
+
 
         var source = $("#footwork-template").html();
         var template = Handlebars.compile(source);
         var html = template(context);
         $('#lesson-in').append(html);
-    });
-</script>
 
-<script>
+
+    });
+
     Handlebars.registerHelper("math", function (a, op, b, options) {
         a = parseFloat(a);
         b = parseFloat(b);
@@ -88,15 +140,13 @@
 <div class="container">
     <h2>{{Name}}</h2>
     <h3>Durration: {{Durration}} Counts</h3>
-    <div class="dance-type row {{Role}}" id="{{Name}}">
+    <div class="dance-type row {{Role}}" data-durration="{{Durration}}" id="{{Name}}">
 
    {{#each Steps}}
-    {{#each this}}
-        <div class="col-xs-{{../../StepGridWidth}} foot-container">
-            <div class="foot position-{{math @@../index "&" @@index}} {{FootType}}shoe {{#each Order}} foot-{{this}} {{/each}} durration-{{Durration}}">
+        <div class="col-xs-{{../StepGridWidth}} foot-container">
+            <div class="foot  {{FootType}}shoe {{#each Order}}data-step-{{this}} {{/each}}" data-position='{{@@index}}'  data-durration='{{Durration}}'  >
             </div>
         </div>
-        {{/each}}
     {{/each}}
 
     </div>
