@@ -1,9 +1,9 @@
 $lead-active: #A3B8FF; 
-$lead-inactive: rgba(163, 184, 255, 0.5);
+$lead-inactive: rgba(163, 184, 255, 0.3);
 $follow-active: #FF89DD;
-$follow-inactive:rgba(255, 137, 221, 0.5);
+$follow-inactive:rgba(255, 137, 221, 0.3);
 $inactive-step: FFB977;
-$active-step: rgba(255, 185, 119, 0.5);
+$active-step: rgba(255, 185, 119, 0.3);
 
 
 /*Animation: name durration timing-function delay iteration direction*/
@@ -160,21 +160,34 @@ $active-step: rgba(255, 185, 119, 0.5);
         filter: FlipH;
         -ms-filter: "FlipH";
 } 
-
-.leftshoe
+$ContainerHeight: 150px;
+.left
 {
 	background: url('../images/leftshoe.png') center center no-repeat;
-	height: 200px;
-	width: 100px;
+	background-size: contain;
+	height: $ContainerHeight;
+	width: $ContainerHeight/2;
 	float: right;
 } 
-.rightshoe
+.right
 {
 	@extend .flip;
-	@extend .leftshoe;
+	@extend .left;
 	float: left;
 }
-
+.blankSpace
+{
+	height: $ContainerHeight;
+	float: left;
+}
+ .floatRight
+{
+	float: right;
+} 
+.floatLeft
+{
+	float: left;
+} 
 .lead
 {
 	.foot
@@ -189,7 +202,7 @@ $active-step: rgba(255, 185, 119, 0.5);
 
 .follow
 {
-	.inactive
+	.foot
 	{
 		background-color: $follow-inactive !important;
 	} 
@@ -204,11 +217,11 @@ $active-step: rgba(255, 185, 119, 0.5);
 {
 	/*.foot-container:nth-child(odd) .foot
 	{
-		@extend .leftshoe;
+		@extend .left;
 	}
 	.foot-container:nth-child(even) .foot
 	{
-		@extend .rightshoe;
+		@extend .right;
 	}
 	.foot-container:nth-child(1) .foot
 	{

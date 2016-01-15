@@ -3,12 +3,12 @@
   from {
     background-color: #A3B8FF; }
   to {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes active-step {
   1%, 14% {
     background-color: #A3B8FF; }
   0%, 15%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 .outter-container {
   width: 100px;
   height: 200px;
@@ -18,147 +18,147 @@
   1%, 28% {
     background-color: #A3B8FF; }
   0%, 29%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-1 {
   1%, 28% {
     background-color: #A3B8FF; }
   0%, 29%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-1 {
   1%, 28% {
     background-color: #A3B8FF; }
   0%, 29%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-1 {
   1%, 28% {
     background-color: #A3B8FF; }
   0%, 29%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-webkit-keyframes step-1 {
   14%, 42% {
     background-color: #A3B8FF; }
   0%, 13%, 43%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-1 {
   14%, 42% {
     background-color: #A3B8FF; }
   0%, 13%, 43%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-1 {
   14%, 42% {
     background-color: #A3B8FF; }
   0%, 13%, 43%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-1 {
   14%, 42% {
     background-color: #A3B8FF; }
   0%, 13%, 43%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-webkit-keyframes step-2 {
   28%, 56% {
     background-color: #A3B8FF; }
   0%, 27%, 57%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-2 {
   28%, 56% {
     background-color: #A3B8FF; }
   0%, 27%, 57%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-2 {
   28%, 56% {
     background-color: #A3B8FF; }
   0%, 27%, 57%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-2 {
   28%, 56% {
     background-color: #A3B8FF; }
   0%, 27%, 57%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-webkit-keyframes step-3 {
   42%, 70% {
     background-color: #A3B8FF; }
   0%, 41%, 71%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-3 {
   42%, 70% {
     background-color: #A3B8FF; }
   0%, 41%, 71%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-3 {
   42%, 70% {
     background-color: #A3B8FF; }
   0%, 41%, 71%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-3 {
   42%, 70% {
     background-color: #A3B8FF; }
   0%, 41%, 71%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-webkit-keyframes step-4 {
   56%, 84% {
     background-color: #A3B8FF; }
   0%, 55%, 85%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-4 {
   56%, 84% {
     background-color: #A3B8FF; }
   0%, 55%, 85%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-4 {
   56%, 84% {
     background-color: #A3B8FF; }
   0%, 55%, 85%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-4 {
   56%, 84% {
     background-color: #A3B8FF; }
   0%, 55%, 85%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-webkit-keyframes step-5 {
   70%, 99% {
     background-color: #A3B8FF; }
   0%, 69%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-5 {
   70%, 99% {
     background-color: #A3B8FF; }
   0%, 69%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-5 {
   70%, 99% {
     background-color: #A3B8FF; }
   0%, 69%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-5 {
   70%, 99% {
     background-color: #A3B8FF; }
   0%, 69%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-webkit-keyframes step-6 {
   0%, 84%, 99% {
     background-color: #A3B8FF; }
   1%, 83%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-moz-keyframes step-6 {
   0%, 84%, 99% {
     background-color: #A3B8FF; }
   1%, 83%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @-o-keyframes step-6 {
   0%, 84%, 99% {
     background-color: #A3B8FF; }
   1%, 83%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 @keyframes step-6 {
   0%, 84%, 99% {
     background-color: #A3B8FF; }
   1%, 83%, 100% {
-    background-color: rgba(163, 184, 255, 0.5); } }
+    background-color: rgba(163, 184, 255, 0.3); } }
 .contain-float {
   overflow: hidden;
   clear: both; }
 
-.flip, .rightshoe {
+.flip, .right {
   -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
@@ -166,33 +166,44 @@
   filter: FlipH;
   -ms-filter: "FlipH"; }
 
-.leftshoe, .rightshoe {
+.left, .right {
   background: url("../images/leftshoe.png") center center no-repeat;
-  height: 200px;
-  width: 100px;
+  background-size: contain;
+  height: 150px;
+  width: 75px;
   float: right; }
 
-.rightshoe {
+.right {
+  float: left; }
+
+.blankSpace {
+  height: 150px;
+  float: left; }
+
+.floatRight {
+  float: right; }
+
+.floatLeft {
   float: left; }
 
 .lead .foot {
-  background-color: rgba(163, 184, 255, 0.5) !important; }
+  background-color: rgba(163, 184, 255, 0.3) !important; }
 .lead .active {
   background-color: #A3B8FF !important; }
 
-.follow .inactive {
-  background-color: rgba(255, 137, 221, 0.5) !important; }
+.follow .foot {
+  background-color: rgba(255, 137, 221, 0.3) !important; }
 .follow .active {
   background-color: #FF89DD !important; }
 
 #balboa {
   /*.foot-container:nth-child(odd) .foot
   {
-  	@extend .leftshoe;
+  	@extend .left;
   }
   .foot-container:nth-child(even) .foot
   {
-  	@extend .rightshoe;
+  	@extend .right;
   }
   .foot-container:nth-child(1) .foot
   {

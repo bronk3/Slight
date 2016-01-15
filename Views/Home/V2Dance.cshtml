@@ -1,7 +1,6 @@
 ﻿@{
     ViewBag.Title = "V2Dance";
 }
-
 <div id="lesson-in">
 
 
@@ -10,47 +9,168 @@
 
 <script>
     $(function () {
-        $(window).ready(setInterval(DanceSteps, 1000));
 
-        var context = { Name: "Balboa",
+        var speed = 500;
+        var beat = speed / 2;
+
+        function LeftSideView(len, width, height) {
+            for (var i = 0; i <= 14; i++) {
+                var q = Math.floor((len - i) / width);
+                var x = i % width;
+                var answer = len - ((x * height) + q);
+            }
+        }
+
+
+        function RightSideView(len, width, height) {
+            for (var i = len; i >= 0; i--) {
+                var q = Math.floor(i / width);
+                var x = i % width;
+                var answer = len - ((x * height) + q);
+            }
+        }
+
+        $(window).ready(setInterval(DanceSteps, speed));
+        $(document).ready(setInterval(animate, speed));
+
+
+        function animate() {
+            $(".active").animate({ opacity: 0.8 }, beat);
+            $(".active").animate({ opacity: 1 }, beat);
+        }
+
+        var contextTango =
+        {
+            Name: "Tango",
             Durration: 8,
-            Role: "lead",
+            StepCount: 8,
+            followStart: 'left',
+            Role: "follow",
+            StartFrom: 0,
+            StepGridWidth: 2,
+            Steps: [
+            {
+                Order: [1],
+                Durration: 1,
+                FootType: 'left'
+            },
+            {
+                Blank: true,
+                Spaces: 1
+            }
+            ,
+            {
+                Order: [2],
+                Durration: 1,
+                FootType: 'right'
+            },
+            {
+                Blank: true,
+                Spaces: 3
+            },
+            {
+                Start: true,
+                Durration: 1,
+                FootType: 'left'
+            },
+            {
+                Start: true,
+                Durration: 1,
+                FootType: 'right'
+            },
+            {
+                Blank: true,
+                Spaces: 6
+            },
+            {
+                Order: [3],
+                Durration: 1,
+                FootType: 'left'
+            },
+            {
+                Blank: true,
+                Spaces: 5
+            },
+            {
+                Order: [4],
+                Durration: 1,
+                FootType: 'right',
+                Class: 'floatRight'
+            },
+            {
+                Order: [5],
+                Durration: 2,
+                FootType: 'left',
+                Class: 'floatLeft'
+            }, {
+                Blank: true,
+                Spaces: 2
+            },
+            {
+                Order: [7],
+                Durration: 1,
+                FootType: 'left'
+            },
+            {
+                Order: [8],
+                Durration: 1,
+                FootType: 'right'
+            },
+            {
+                Blank: true,
+                Spaces: 1
+            },
+            {
+                Order: [6],
+                Durration: 1,
+                FootType: 'right'
+            }
+            ]
+        }
+
+        var contextBalboa = { Name: "Balboa",
+            Durration: 8,
+            StepCount: 6,
+            followStart: 'right',
+            Role: "follow",
             StepGridWidth: 6,
+            StartFrom: 1,
             Steps: [
             {
                 Position: 0,
-                Order: [3],
+                Order: [2],
                 Durration: 1,
                 FootType: 'left'
             }, {
                 Position: 1,
-                Order: [2, 8],
+                Order: [1],
                 Durration: 1,
                 FootType: 'right'
             },
             {
                 Position: 2,
-                Order: [7],
-                StartWeight: true,
+                Order: [6],
+                Start: true,
                 Durration: 2,
                 FootType: 'left'
             },
             {
                 Position: 3,
-                Order: [1, 4],
+                Order: [3],
+                Start: true,
                 Durration: 2,
                 FootType: 'right'
             },
             {
                 Position: 4,
-                Order: [5],
+                Order: [4],
                 Durration: 1,
                 FootType: 'left'
             },
             {
                 Position: 5,
-                Order: [6],
-                Durration: 2,
+                Order: [5],
+                Durration: 1,
                 FootType: 'right'
             }
         ]
@@ -58,10 +178,12 @@
 
         var Globals =
         {
-            dance: context,
-            danceStepIndex: 1,
+            AllDances: [contextBalboa, contextTango],
+            dance: contextTango,
+            pointOfView: top,
+            danceStepIndex: 0,
             firstStepEl: null,
-            firstStepWeightEl: null,
+            startSteps: null,
             currentStepEl: null,
             previousStepEl: null,
             currentDurration: 0
@@ -69,44 +191,41 @@
 
         function DanceSteps() {
 
-            if (Globals.previousStepEl != null) {
-                $(Globals.previousStepEl).removeClass("active");
+            if (Globals.danceStepIndex == 0) {
+                $(".foot").removeClass("active");
+                $(".start").addClass("active");
+                Globals.currentDurration = 1;
+                Globals.danceStepIndex++;
+                return;
+            }
+            if (Globals.dance.StepCount < Globals.danceStepIndex) {
+                Globals.danceStepIndex = Globals.dance.StartFrom;
             }
 
-            var danceStepIndex = Globals.danceStepIndex;
-            var currentStepObj = Globals.dance.Steps.filter(function (obj) {
-                if (obj.Order.indexOf(danceStepIndex) != -1)
-                    return obj;
-            });
-            var newStepEl = $(".data-step-" + danceStepIndex + ":first");
-
-            if (danceStepIndex == 1) {
-                Globals.firstStepEl = newStepEl;
-                var obj = Globals.dance.Steps.filter(function (obj, index) {
-                    if (obj.StartWeight) return obj;
+            if (Globals.currentDurration == 0) {
+                var nextStepObj = Globals.dance.Steps.filter(function (obj) {
+                    if (obj.Order != null && obj.Order.indexOf(Globals.danceStepIndex) != -1)
+                        return obj;
                 });
-                Globals.firstStepWeightEl = $("*[data-position='" + obj[0].Position + "']:first");
-                $(Globals.firstStepWeightEl).addClass("active");
-                Globals.previousStepEl = Globals.firstStepWeightEl;
-            }
+                var nextStep = $(".data-step-" + Globals.danceStepIndex + ":first");
 
-            if (newStepEl.length == 0) {
-                danceStepIndex = 1;
-                Globals.currentStepEl = Globals.firstStepEl;
-                Globals.previousStepEl = Globals.firstStepWeightEl;
+                if (nextStep.length != 0) {
+                    var nextFoot = nextStepObj[0].FootType;
+                    var moveFoot = $(".active." + nextFoot);
+                    moveFoot.removeClass("active");
+                    nextStep.addClass("active");
+                    Globals.currentDurration = nextStepObj[0].Durration;
+                    Globals.danceStepIndex++;
+                }
             }
-            Globals.previousStepEl = Globals.currentStepEl;
-            Globals.currentStepEl = newStepEl;
-            $(Globals.previousStepEl).addClass("active");
-            $(Globals.currentStepEl).addClass("active");
-            Globals.danceStepIndex++;
+            Globals.currentDurration--;
         }
 
 
 
         var source = $("#footwork-template").html();
         var template = Handlebars.compile(source);
-        var html = template(context);
+        var html = template(Globals.dance);
         $('#lesson-in').append(html);
 
 
@@ -134,21 +253,36 @@
         };
         return val;
     });
+
+    Handlebars.registerHelper('repeat', function(n, block){
+        var accum = '';
+        for (var i = 0; i < n; i++)
+        {
+            accum += block.fn(i); 
+        }
+        return accum;
+    });
 </script>
 
 <script id="footwork-template" type="text/x-handlebars-template">
 <div class="container">
     <h2>{{Name}}</h2>
     <h3>Durration: {{Durration}} Counts</h3>
+    <h3>Steps: {{StepCount}}</h3>
     <div class="dance-type row {{Role}}" data-durration="{{Durration}}" id="{{Name}}">
 
    {{#each Steps}}
+   {{#if Blank}}
+    {{#repeat Spaces}}
+    <div class="col-xs-{{../../StepGridWidth}} blankSpace"></div> 
+    {{/repeat}}
+   {{else}}
         <div class="col-xs-{{../StepGridWidth}} foot-container">
-            <div class="foot  {{FootType}}shoe {{#each Order}}data-step-{{this}} {{/each}}" data-position='{{@@index}}'  data-durration='{{Durration}}'  >
+            <div class="foot {{Class}} {{FootType}} {{#if Start}}start{{/if}} {{#each Order}}data-step-{{this}} {{/each}}" data-position='{{@@index}}'  data-durration='{{Durration}}'  >
             </div>
         </div>
+   {{/if}}
     {{/each}}
-
     </div>
 </div>
 </script>
